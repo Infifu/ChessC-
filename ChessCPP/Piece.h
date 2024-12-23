@@ -8,9 +8,9 @@ private:
 	std::string PlaceAt;
 	bool moved;
 public:
-	void validmoves();
-	void attackSquares();
-	void captureFreeMoves();
-	bool toBECaptured();
+	virtual void validmoves() = 0;
+	virtual void attackSquares() = 0;
+	virtual void captureFreeMoves() = 0;
+	virtual bool toBECaptured() = 0;
 };
 
