@@ -1,2 +1,2 @@
-# ChessC-
+# ChessCPP
 Chess in c++
