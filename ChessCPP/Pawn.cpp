@@ -1,18 +1,17 @@
 #include "Pawn.h"
 
-bool Pawn::promoted()
+Pawn::Pawn(bool color) : Piece(color), promoted(false),promotedTo(nullptr),moveDirection(true)
+//black = false, white = true
+//moveDirection, true = normal , false = reversed
 {
-	return false;
-}
-
-Piece* Pawn::promotedTo()
-{
-	return nullptr;
-}
-
-bool Pawn::moveDirection()
-{
-	return false;
+	if (color)
+	{
+		pieceSymbol = "P";
+	}
+	else
+	{
+		pieceSymbol = "p";
+	}
 }
 
 void Pawn::validmoves()

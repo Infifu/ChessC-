@@ -1,5 +1,13 @@
 #include "Piece.h"
 
+Piece::Piece(bool color) : PieceColor(color),pieceSymbol("") {}
+
+std::string Piece::getPieceSymbol() const
+{
+	return pieceSymbol;
+}
+
+
 void Piece::validmoves()
 {
 }

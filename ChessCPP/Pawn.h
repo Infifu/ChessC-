@@ -3,16 +3,16 @@
 
 class Pawn : public Piece
 {
-private:
+protected:
+	bool promoted;
+	Piece* promotedTo;
+	bool moveDirection; //true = up //false = down
 
 public:
-	bool promoted();
-	Piece* promotedTo();
-	bool moveDirection();
+	Pawn(bool color);
 	void validmoves() override;
 	void attackSquares() override;
 	void captureFreeMoves() override;
 	bool toBECaptured() override;
-	
 };
 
