@@ -1,10 +1,11 @@
 #include "King.h"
 
-void King::validmoves()
+bool King::validmoves(std::string currPositon, std::string goalPosition)
 {
+	return false;
 }
 
-void King::attackSquares()
+void King::attackSquares(std::string currPositon, std::string goalPosition)
 {
 }
 

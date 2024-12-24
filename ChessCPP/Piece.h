@@ -4,15 +4,16 @@
 class Piece
 {
 protected:
-	bool PieceColor;
-	std::string PlaceAt;
-	std::string pieceSymbol;
+	bool _pieceColor;
+	std::string _placeAt;
+	std::string _pieceSymbol;
 public:
 	Piece(bool color); //black = false, white = true
 	std::string getPieceSymbol() const;
-	virtual void validmoves() = 0;
-	virtual void attackSquares() = 0;
+	virtual	bool validmoves(std::string currPositon, std::string goalPosition) = 0;
+	virtual void attackSquares(std::string currPositon, std::string goalPosition) = 0;
 	virtual void captureFreeMoves() = 0;
 	virtual bool toBECaptured() = 0;
+	bool getPieceColor();
 };
 

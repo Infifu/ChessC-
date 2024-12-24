@@ -5,12 +5,22 @@
 
 #pragma once
 
+#pragma once
+
 #undef UNICODE
 #undef _UNICODE
 #include "targetver.h"
 
 #include <stdio.h>
 #include <tchar.h>
+#include <iostream>
 
+// Ensure Piece.h is included before Board.h
+#include "Piece.h"
+#include "Board.h"
+#include "King.h"
+#include "Pawn.h"
+#include "Rook.h"
 
 // TODO: reference additional headers your program requires here
+

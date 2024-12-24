@@ -1,13 +1,13 @@
 #pragma once
-#include "Piece.h"
+#include "stdafx.h"
 
 class King : public Piece
 {
 private:
 
 public:
-	void validmoves() override;
-	void attackSquares() override;
+	bool validmoves(std::string currPositon, std::string goalPosition) override;
+	void attackSquares(std::string currPositon, std::string goalPosition) override;
 	void captureFreeMoves() override;
 	bool toBECaptured() override;
 };

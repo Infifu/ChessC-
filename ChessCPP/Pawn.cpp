@@ -1,24 +1,26 @@
 #include "Pawn.h"
+#include "Board.h"
 
-Pawn::Pawn(bool color) : Piece(color), promoted(false),promotedTo(nullptr),moveDirection(true)
+Pawn::Pawn(bool color) : Piece(color), _promoted(false),_promotedTo(nullptr),_moveDirection(true)
 //black = false, white = true
 //moveDirection, true = normal , false = reversed
 {
 	if (color)
 	{
-		pieceSymbol = "P";
+		_pieceSymbol = "P";
 	}
 	else
 	{
-		pieceSymbol = "p";
+		_pieceSymbol = "p";
 	}
 }
 
-void Pawn::validmoves()
+bool Pawn::validmoves(std::string currPositon, std::string goalPosition)
 {
+	return false;
 }
 
-void Pawn::attackSquares()
+void Pawn::attackSquares(std::string currPositon, std::string goalPosition)
 {
 }
 

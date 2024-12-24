@@ -1,17 +1,18 @@
 #pragma once
 #include "Piece.h"
+#include "stdafx.h"
 
 class Pawn : public Piece
 {
 protected:
-	bool promoted;
-	Piece* promotedTo;
-	bool moveDirection; //true = up //false = down
+	bool _promoted;
+	Piece* _promotedTo;
+	bool _moveDirection; //true = up //false = down
 
 public:
 	Pawn(bool color);
-	void validmoves() override;
-	void attackSquares() override;
+	bool validmoves(std::string currPositon, std::string goalPosition) override;
+	void attackSquares(std::string currPositon, std::string goalPosition) override;
 	void captureFreeMoves() override;
 	bool toBECaptured() override;
 };

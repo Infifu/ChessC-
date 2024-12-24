@@ -1,19 +1,15 @@
 #include "Piece.h"
 
-Piece::Piece(bool color) : PieceColor(color),pieceSymbol("") {}
+Piece::Piece(bool color) : _pieceColor(color),_pieceSymbol(""),_placeAt("") {}
 
 std::string Piece::getPieceSymbol() const
 {
-	return pieceSymbol;
+	return _pieceSymbol;
 }
 
-
-void Piece::validmoves()
+bool validmoves(std::string currPositon, std::string goalPosition)
 {
-}
-
-void Piece::attackSquares()
-{
+	return false;
 }
 
 void Piece::captureFreeMoves()
@@ -23,4 +19,9 @@ void Piece::captureFreeMoves()
 bool Piece::toBECaptured()
 {
 	return false;
+}
+
+bool Piece::getPieceColor()
+{
+	return _pieceColor;
 }

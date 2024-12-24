@@ -16,6 +16,9 @@ using std::string;
 
 void main()
 {
+	std::string from;
+	std::string to;
+
 	srand(time_t(NULL));
 	Board board;
 	board.intialise();
@@ -60,15 +63,15 @@ void main()
 	{
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
-		
-		// YOUR CODE
-		strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
+		int resultInt = 0;
+		char resultString[2];
 
-		/******* JUST FOR EREZ DEBUGGING ******/
-		int r = rand() % 10; // just for debugging......
-		msgToGraphics[0] = (char)(1 + '0');
-		msgToGraphics[1] = 0;
-		/******* JUST FOR EREZ DEBUGGING ******/
+		resultInt = board.checkMove(msgFromGraphics);
+		resultString[0] = char(resultInt + '0');
+		resultString[1] = 0;
+
+		// YOUR CODE
+		strcpy_s(msgToGraphics, resultString); // msgToGraphics should contain the result of the operation
 
 
 		// return result to graphics		
