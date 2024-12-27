@@ -1,6 +1,6 @@
 #include "Piece.h"
 
-Piece::Piece(bool color) : _pieceColor(color),_pieceSymbol(""),_placeAt("") {}
+Piece::Piece(Color color) : _pieceColor(color),_pieceSymbol(""),_placeAt("") {}
 
 std::string Piece::getPieceSymbol() const
 {
@@ -21,7 +21,7 @@ bool Piece::toBECaptured()
 	return false;
 }
 
-bool Piece::getPieceColor() const
+int Piece::getPieceColor() const
 {
 	return _pieceColor;
 }

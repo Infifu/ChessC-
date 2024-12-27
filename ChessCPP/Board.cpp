@@ -43,15 +43,15 @@ void Board::intialise()
 	//black = false, white = true
 	for (int j = 0; j < 8; j++)
 	{
-		_grid[6][j] = new Pawn(true); //white white pawns
-		_grid[1][j] = new Pawn(false); //black pawns
+		_grid[6][j] = new Pawn(WHITE); //white white pawns
+		_grid[1][j] = new Pawn(BLACK); //black pawns
 	}
 
 	//Rooks
-	_grid[7][0] = new Rook(true);
-	_grid[7][7] = new Rook(true);
-	_grid[0][0] = new Rook(false);
-	_grid[0][7] = new Rook(false);
+	_grid[7][0] = new Rook(WHITE);
+	_grid[7][7] = new Rook(WHITE);
+	_grid[0][0] = new Rook(BLACK);
+	_grid[0][7] = new Rook(BLACK);
 
 	//TO DO
 	//Add other pieces
@@ -135,9 +135,12 @@ int Board::checkMove(std::string msgFromGraphics)
 	{
 		return 2; //error if the the player choose position without piece
 	}
-	if (toPiece != nullptr && fromPiece != nullptr)
+	if (fromPiece != nullptr && toPiece != nullptr)
 	{
-		return 3; //error if both figures belong to the same player figures
+		if (fromPiece->getPieceColor() == toPiece->getPieceColor())
+		{
+			return 3; //error if both figures belong to the same player figures
+		}
 	}
 	if (fromPiece->validmoves(result, resultTo,_grid)) //future code for eating, check if there is no pieces blocking the movement
 	{

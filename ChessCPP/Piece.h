@@ -1,15 +1,22 @@
 #pragma once
 #include <iostream>
 
+enum Color
+{
+	WHITE = 1,
+	BLACK = 0
+};
+
+
 class Piece
 {
 protected:
-	bool _pieceColor; //field to store the piece color
+	Color _pieceColor; //field to store the piece color
 	std::string _placeAt; //stores position //UNFINISHED
 	std::string _pieceSymbol; //Symbol of the pieces (for example P for rook)
 
 public:
-	Piece(bool color); //black = false, white = true
+	Piece(Color color); //black = false, white = true
 	virtual	bool validmoves(std::string currPositon, std::string goalPositionm,Piece* (&grid)[8][8]) = 0;
 
 	//to finish:
@@ -19,6 +26,6 @@ public:
 	
 	//geters
 	std::string getPieceSymbol() const;
-	bool getPieceColor() const;
+	int getPieceColor() const;
 };
 

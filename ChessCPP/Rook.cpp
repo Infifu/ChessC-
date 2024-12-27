@@ -4,7 +4,7 @@
  * Rook constructor,Big 'R' for white rook Small 'r' for black rook (color true = white, color false = black)
  * @param color - bool
  */
-Rook::Rook(bool color) : Piece(color)
+Rook::Rook(Color color) : Piece(color)
 {
 	if (color)
 	{
