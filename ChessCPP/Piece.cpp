@@ -7,7 +7,7 @@ std::string Piece::getPieceSymbol() const
 	return _pieceSymbol;
 }
 
-bool validmoves(std::string currPositon, std::string goalPosition)
+bool validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid)[8][8])
 {
 	return false;
 }
@@ -21,7 +21,7 @@ bool Piece::toBECaptured()
 	return false;
 }
 
-bool Piece::getPieceColor()
+bool Piece::getPieceColor() const
 {
 	return _pieceColor;
 }

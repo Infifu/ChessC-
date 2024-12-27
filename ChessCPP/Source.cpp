@@ -60,7 +60,8 @@ void main()
 	string msgFromGraphics = p.getMessageFromGraphics();
 
 	while (msgFromGraphics != "quit")
-	{
+	{	
+		board.display();
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		int resultInt = 0;

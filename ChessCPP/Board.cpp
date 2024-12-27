@@ -5,6 +5,9 @@
 #include <iostream>
 #include <string>
 
+/**
+ * @brief Fill the grid with null pointers
+ */
 Board::Board() 
 {
 	for (int i = 0; i < 8; ++i) {
@@ -14,6 +17,9 @@ Board::Board()
 	}
 }
 
+/**
+ * @brief print the grid for debugging
+ */
 void Board::display()
 {
 	for (int i = 0; i < 8; ++i) {
@@ -29,6 +35,9 @@ void Board::display()
 	}
 }
 
+/*
+* Initialise the grid with all the pieces
+*/
 void Board::intialise()
 {
 	//black = false, white = true
@@ -44,15 +53,26 @@ void Board::intialise()
 	_grid[0][0] = new Rook(false);
 	_grid[0][7] = new Rook(false);
 
+	//TO DO
+	//Add other pieces
 }
 
 bool Board::movePiece(int fromX, int fromY, int toX, int toY)
 {
+	//TO DO
+	//Do we even need this function?
 	return false;
 }
 
+
 // [][]
 // row col                                      e2
+/**
+ * @brief this functions converts chess position into 2d array position
+ * for example for e2 position it will become 64 6 - row, 4 - col
+ * @param location on the chess board for example (e2)
+ * @return the string that contains the 2d array position
+ */                                          
 std::string Board::indexToNumber(std::string location)
 {
 	std::string result;
@@ -66,8 +86,17 @@ std::string Board::indexToNumber(std::string location)
 	return result;
 }
 
+
+
+
+/**
+ * @brief This function checks if the move is valid outside of the standart rules for each piece
+ * @param msgFromGraphics (2 positions on the chess board , from and to)
+ * @return the code to the graphics
+ */
 int Board::checkMove(std::string msgFromGraphics)
 {
+	//declaring all the variables
 	std::string from;
 	std::string to;
 	std::string result;
@@ -79,11 +108,13 @@ int Board::checkMove(std::string msgFromGraphics)
 	int FromCol;
 	int ToCol;
 
+	//strings that hold the chess board position of from figure and target figure
 	from += msgFromGraphics[0];
 	from += msgFromGraphics[1];
 	to += msgFromGraphics[2];
 	to += msgFromGraphics[3];
 
+	//convert these chess board positions into 2d array positions
 	result = indexToNumber(from);
 	resultTo = indexToNumber(to);
 	FromRow = int(result[0]) - 48;
@@ -93,28 +124,27 @@ int Board::checkMove(std::string msgFromGraphics)
 
 	fromPiece = _grid[FromRow][FromCol];
 	toPiece = _grid[ToRow][ToCol];
-	if (toPiece == nullptr && fromPiece->validmoves(result, resultTo))
+	if (toPiece == nullptr && fromPiece->validmoves(result, resultTo,_grid)) //if the goal is empty and there is no pieces blocking it
 	{
-		_grid[FromRow][FromCol] = nullptr;
+		_grid[FromRow][FromCol] = nullptr; //move the pieces
 		_grid[ToRow][ToCol] = fromPiece;
 		delete(toPiece);
-		return 0;
+		return 0; //code for valid move
 	}
-
 	if (fromPiece == nullptr)
 	{
-		return 2; //there is not current piece
+		return 2; //error if the the player choose position without piece
 	}
 	if (toPiece != nullptr && fromPiece != nullptr)
 	{
-		return 3; //same player figures
+		return 3; //error if both figures belong to the same player figures
 	}
-	if (fromPiece->validmoves(result, resultTo))
+	if (fromPiece->validmoves(result, resultTo,_grid)) //future code for eating, check if there is no pieces blocking the movement
 	{
 		_grid[FromRow][FromCol] = nullptr;
 		_grid[ToRow][ToCol] = fromPiece;
 		delete(toPiece);
 	}
 
-	return 6;
+	return 6; //error for invalid piece movement
 }

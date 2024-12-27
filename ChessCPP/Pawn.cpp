@@ -15,7 +15,7 @@ Pawn::Pawn(bool color) : Piece(color), _promoted(false),_promotedTo(nullptr),_mo
 	}
 }
 
-bool Pawn::validmoves(std::string currPositon, std::string goalPosition)
+bool Pawn::validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid)[8][8])
 {
 	return false;
 }

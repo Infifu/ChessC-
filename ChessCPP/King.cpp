@@ -1,6 +1,6 @@
 #include "King.h"
 
-bool King::validmoves(std::string currPositon, std::string goalPosition)
+bool King::validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid)[8][8])
 {
 	return false;
 }
