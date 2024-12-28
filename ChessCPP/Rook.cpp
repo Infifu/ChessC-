@@ -34,7 +34,7 @@ bool Rook::validmoves(std::string currPositon, std::string goalPosition,Piece* (
 	//checks if the movement is on the same row or on the same col
 	if (currRow == goalRow) //if its on the same row
 	{
-		for (int i = currCol; i < goalCol; i++) //check for pieces that can block the way
+		for (int i = currCol + 1; i < goalCol; i++) //check for pieces that can block the way
 		{
 			if (grid[goalRow][i] != nullptr) //if the piece found return false - NOT valid move
 			{
@@ -45,7 +45,7 @@ bool Rook::validmoves(std::string currPositon, std::string goalPosition,Piece* (
 	}
 	if (currCol == goalCol) //if the movment on the same col
 	{
-		for (int i = currRow; i < goalRow; i++) //check for pieces that can block the way
+		for (int i = currRow + 1; i < goalRow; i++) //check for pieces that can block the way
 		{
 			if (grid[i][goalCol] != nullptr)//if the piece foudn return false - Not valid move
 			{

@@ -20,7 +20,7 @@ void main()
 	std::string to;
 
 	srand(time_t(NULL));
-	Board board;
+	Board board(BLACK);
 	board.intialise();
 	board.display();
 	
@@ -51,7 +51,7 @@ void main()
 	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
-
+	
 	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
 	
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string

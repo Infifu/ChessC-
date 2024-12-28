@@ -7,9 +7,9 @@ class Board
 {
 protected:
     Piece* _grid[8][8];
-    std::map<std::string, std::string> _dict; //might be deleted later
+    Color _currentPlayer;
 public:
-    Board(); //constructor
+    Board(Color color); //constructor
     void display(); //display the board
     void intialise(); //initalise the grid with chess pieces
     bool movePiece(int fromX, int fromY, int toX, int toY); //might be deleted later

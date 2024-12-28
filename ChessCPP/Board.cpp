@@ -8,7 +8,7 @@
 /**
  * @brief Fill the grid with null pointers
  */
-Board::Board() 
+Board::Board(Color color) : _currentPlayer(color)
 {
 	for (int i = 0; i < 8; ++i) {
 		for (int j = 0; j < 8; ++j) {
@@ -52,6 +52,10 @@ void Board::intialise()
 	_grid[7][7] = new Rook(WHITE);
 	_grid[0][0] = new Rook(BLACK);
 	_grid[0][7] = new Rook(BLACK);
+
+	//Kings
+	_grid[0][3] = new King(BLACK);
+	_grid[7][3] = new King(WHITE);
 
 	//TO DO
 	//Add other pieces
@@ -124,16 +128,28 @@ int Board::checkMove(std::string msgFromGraphics)
 
 	fromPiece = _grid[FromRow][FromCol];
 	toPiece = _grid[ToRow][ToCol];
+	if (fromPiece == nullptr)
+	{
+		return 2; //error if the the player choose position without piece
+	}
+	if (fromPiece->getPieceColor() != _currentPlayer)
+	{
+		return 6;
+	}
 	if (toPiece == nullptr && fromPiece->validmoves(result, resultTo,_grid)) //if the goal is empty and there is no pieces blocking it
 	{
 		_grid[FromRow][FromCol] = nullptr; //move the pieces
 		_grid[ToRow][ToCol] = fromPiece;
 		delete(toPiece);
+		if (_currentPlayer == WHITE)
+		{
+			_currentPlayer = BLACK;
+		}
+		else
+		{
+			_currentPlayer = WHITE;
+		}
 		return 0; //code for valid move
-	}
-	if (fromPiece == nullptr)
-	{
-		return 2; //error if the the player choose position without piece
 	}
 	if (fromPiece != nullptr && toPiece != nullptr)
 	{
@@ -147,6 +163,15 @@ int Board::checkMove(std::string msgFromGraphics)
 		_grid[FromRow][FromCol] = nullptr;
 		_grid[ToRow][ToCol] = fromPiece;
 		delete(toPiece);
+		if (_currentPlayer == WHITE)
+		{
+			_currentPlayer = BLACK;
+		}
+		else
+		{
+			_currentPlayer = WHITE;
+		}
+		return 0;
 	}
 
 	return 6; //error for invalid piece movement
