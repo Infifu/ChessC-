@@ -15,4 +15,6 @@ public:
     bool movePiece(int fromX, int fromY, int toX, int toY); //might be deleted later
     std::string indexToNumber(std::string); //convert the chess position to 2d array position
     int checkMove(std::string msgFromGraphics); //check if the move is valid and return codes
+    bool checkCheck(Color currentPlayer); //check if there is a check on the enemy king
+    void switchColor(); //switch current player color
 };

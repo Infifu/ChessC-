@@ -11,6 +11,5 @@ public:
 	void attackSquares(std::string currPositon, std::string goalPosition) override;
 	void captureFreeMoves() override;
 	bool toBECaptured() override;
-	bool checkCheck(Color color);
 };
 

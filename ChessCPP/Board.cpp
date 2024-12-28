@@ -10,8 +10,10 @@
  */
 Board::Board(Color color) : _currentPlayer(color)
 {
-	for (int i = 0; i < 8; ++i) {
-		for (int j = 0; j < 8; ++j) {
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
 			_grid[i][j] = nullptr;
 		}
 	}
@@ -22,12 +24,16 @@ Board::Board(Color color) : _currentPlayer(color)
  */
 void Board::display()
 {
-	for (int i = 0; i < 8; ++i) {
-		for (int j = 0; j < 8; ++j) {
-			if (_grid[i][j] != nullptr) {
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			if (_grid[i][j] != nullptr)
+			{
 				std::cout << _grid[i][j]->getPieceSymbol() << " ";
 			}
-			else {
+			else
+			{
 				std::cout << "# ";
 			}
 		}
@@ -128,51 +134,85 @@ int Board::checkMove(std::string msgFromGraphics)
 
 	fromPiece = _grid[FromRow][FromCol];
 	toPiece = _grid[ToRow][ToCol];
+
 	if (fromPiece == nullptr)
-	{
 		return 2; //error if the the player choose position without piece
-	}
+
 	if (fromPiece->getPieceColor() != _currentPlayer)
-	{
 		return 6;
-	}
-	if (toPiece == nullptr && fromPiece->validmoves(result, resultTo,_grid)) //if the goal is empty and there is no pieces blocking it
-	{
+
+	if (fromPiece->validmoves(result, resultTo, _grid)) { //if the goal is empty and there is no pieces blocking it
+		if (toPiece != nullptr) {
+			if (toPiece->getPieceSymbol() == "k" || toPiece->getPieceSymbol() == "K")
+				return 6;
+		}
 		_grid[FromRow][FromCol] = nullptr; //move the pieces
 		_grid[ToRow][ToCol] = fromPiece;
 		delete(toPiece);
-		if (_currentPlayer == WHITE)
-		{
-			_currentPlayer = BLACK;
-		}
-		else
-		{
-			_currentPlayer = WHITE;
-		}
+
+		if (checkCheck(_currentPlayer))
+			return 1; //code for check
+
 		return 0; //code for valid move
 	}
-	if (fromPiece != nullptr && toPiece != nullptr)
-	{
+
+	if (fromPiece != nullptr && toPiece != nullptr) {
 		if (fromPiece->getPieceColor() == toPiece->getPieceColor())
-		{
 			return 3; //error if both figures belong to the same player figures
-		}
-	}
-	if (fromPiece->validmoves(result, resultTo,_grid)) //future code for eating, check if there is no pieces blocking the movement
-	{
-		_grid[FromRow][FromCol] = nullptr;
-		_grid[ToRow][ToCol] = fromPiece;
-		delete(toPiece);
-		if (_currentPlayer == WHITE)
-		{
-			_currentPlayer = BLACK;
-		}
-		else
-		{
-			_currentPlayer = WHITE;
-		}
-		return 0;
 	}
 
 	return 6; //error for invalid piece movement
 }
+
+/**
+ * @brief functions to check if there is a check on the king
+ * @param currentPlayer - the color of the current player
+ * @return true - there is a check, false - there is no check
+ */
+bool Board::checkCheck(Color currentPlayer)
+{
+	std::string currPosition;
+	std::string goalPosition;
+	bool found;
+
+	//loop though the board to find the enemy king
+	for (int i = 0; i < 8; ++i) {
+		for (int j = 0; j < 8; ++j) {
+			if (_grid[i][j] != nullptr) {
+				if (_grid[i][j]->getPieceColor() != currentPlayer) {
+					if (_grid[i][j]->getPieceSymbol() == "k" || _grid[i][j]->getPieceSymbol() == "K") {
+						goalPosition = std::to_string(i) + std::to_string(j);
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	//check if any figure threats the enemy king
+	for (int i = 0; i < 8; ++i) {
+		for (int j = 0; j < 8; ++j) {
+			if (_grid[i][j] != nullptr) {
+				if (_grid[i][j]->getPieceColor() == currentPlayer) {
+					currPosition.clear();
+					currPosition = std::to_string(i) + std::to_string(j);
+					if (_grid[i][j]->validmoves(currPosition, goalPosition, _grid))
+						return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+/**
+ * @brief switch the color of the current player
+ */
+void Board::switchColor()
+{
+	if (_currentPlayer == WHITE)
+		_currentPlayer = BLACK;
+	else if (_currentPlayer == BLACK)
+		_currentPlayer = WHITE;
+}
+

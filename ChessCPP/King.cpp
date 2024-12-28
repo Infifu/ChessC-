@@ -42,8 +42,3 @@ bool King::toBECaptured()
 {
 	return false;
 }
-
-bool King::checkCheck(Color color)
-{
-	return false;
-}

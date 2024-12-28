@@ -23,10 +23,10 @@ void main()
 	Board board(BLACK);
 	board.intialise();
 	board.display();
-	
+
 	Pipe p;
 	bool isConnect = p.connect();
-	
+
 	string ans;
 	while (!isConnect)
 	{
@@ -40,27 +40,27 @@ void main()
 			Sleep(5000);
 			isConnect = p.connect();
 		}
-		else 
+		else
 		{
 			p.close();
 			return;
 		}
 	}
-	
+
 
 	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
-	
+
 	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
-	
+
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
 
 	while (msgFromGraphics != "quit")
-	{	
+	{
 		board.display();
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
@@ -68,6 +68,10 @@ void main()
 		char resultString[2];
 
 		resultInt = board.checkMove(msgFromGraphics);
+
+		if (resultInt == 1 || resultInt == 0 || resultInt == 8) //switch color of the current player
+			board.switchColor();
+
 		resultString[0] = char(resultInt + '0');
 		resultString[1] = 0;
 
