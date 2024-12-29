@@ -9,14 +9,12 @@
  */
 Pawn::Pawn(Color color) : Piece(color), _promoted(false),_promotedTo(nullptr),_firstMove(true)
 {
-	if (color)
-	{
+	if (color) {
 		_pieceSymbol = "P";
 		_moveDirection = UP;
 		_pieceColor = WHITE;
 	}
-	else
-	{
+	else {
 		_pieceSymbol = "p";
 		_moveDirection = DOWN;
 		_pieceColor = BLACK;
@@ -66,18 +64,5 @@ bool Pawn::validmoves(std::string currPositon, std::string goalPosition, Piece* 
 		}
 	}
 
-	return false;
-}
-
-void Pawn::attackSquares(std::string currPositon, std::string goalPosition)
-{
-}
-
-void Pawn::captureFreeMoves()
-{
-}
-
-bool Pawn::toBECaptured()
-{
 	return false;
 }

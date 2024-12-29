@@ -29,16 +29,3 @@ bool King::validmoves(std::string currPositon, std::string goalPosition, Piece* 
 	}
 	return false;
 }
-
-void King::attackSquares(std::string currPositon, std::string goalPosition)
-{
-}
-
-void King::captureFreeMoves()
-{
-}
-
-bool King::toBECaptured()
-{
-	return false;
-}

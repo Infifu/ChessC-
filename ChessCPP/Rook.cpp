@@ -7,13 +7,9 @@
 Rook::Rook(Color color) : Piece(color)
 {
 	if (color)
-	{
 		_pieceSymbol = "R"; //white rook
-	}
 	else
-	{
 		_pieceSymbol = "r"; //black rook
-	}
 }
 
 /**
@@ -58,25 +54,5 @@ bool Rook::validmoves(std::string currPosition, std::string goalPosition, Piece*
         }
         return true; // Return valid move
     }
-
     return false; // Not a valid move if it's not in the same row or column
-}
-
-void Rook::attackSquares(std::string currPositon, std::string goalPosition)
-{
-	//TO DO:
-	//Finish
-}
-
-void Rook::captureFreeMoves()
-{
-	//TO DO:
-	//FINISH
-}
-
-bool Rook::toBECaptured()
-{
-	//TO DO:
-	//FINISH
-	return false;
 }

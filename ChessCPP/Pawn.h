@@ -20,10 +20,5 @@ public:
 	
 	//function to check if the move is valid
 	bool validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid)[8][8]) override;
-
-	//to finish / to be deleted
-	void attackSquares(std::string currPositon, std::string goalPosition) override;
-	void captureFreeMoves() override;
-	bool toBECaptured() override;
 };
 

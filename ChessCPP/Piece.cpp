@@ -12,15 +12,6 @@ bool validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid
 	return false;
 }
 
-void Piece::captureFreeMoves()
-{
-}
-
-bool Piece::toBECaptured()
-{
-	return false;
-}
-
 int Piece::getPieceColor() const
 {
 	return _pieceColor;
