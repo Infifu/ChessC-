@@ -140,6 +140,11 @@ int Board::checkMove(std::string msgFromGraphics)
 
 	if (fromPiece->getPieceColor() != _currentPlayer)
 		return 6;
+	
+	if (fromPiece != nullptr && toPiece != nullptr) {
+		if (fromPiece->getPieceColor() == toPiece->getPieceColor())
+			return 3; //error if both figures belong to the same player figures
+	}
 
 	if (_checkOnKing != null) //doesnt let the player move if his king will stay in check after the move
 	{
@@ -164,14 +169,26 @@ int Board::checkMove(std::string msgFromGraphics)
 	}
 
 	if (fromPiece->validmoves(result, resultTo, _grid)) { //if the goal is empty and there is no pieces blocking it
+		Color enemyPlayer;
 		if (toPiece != nullptr) {
 			if (toPiece->getPieceSymbol() == "k" || toPiece->getPieceSymbol() == "K")
 				return 6;
 		}
 
+		if (_currentPlayer == BLACK)
+			enemyPlayer = WHITE;
+		else if (_currentPlayer == WHITE)
+			enemyPlayer = BLACK;
 
 		_grid[FromRow][FromCol] = nullptr; //move the pieces
 		_grid[ToRow][ToCol] = fromPiece;
+		if (checkCheck(enemyPlayer))
+		{
+			_grid[ToRow][ToCol] = nullptr; //reverse the move
+			_grid[FromRow][FromCol] = fromPiece;
+			_checkOnKing = null;
+			return 6;
+		}
 		delete(toPiece);
 
 		if (checkCheck(_currentPlayer))
@@ -179,12 +196,6 @@ int Board::checkMove(std::string msgFromGraphics)
 
 		return 0; //code for valid move
 	}
-
-	if (fromPiece != nullptr && toPiece != nullptr) {
-		if (fromPiece->getPieceColor() == toPiece->getPieceColor())
-			return 3; //error if both figures belong to the same player figures
-	}
-
 	return 6; //error for invalid piece movement
 }
 

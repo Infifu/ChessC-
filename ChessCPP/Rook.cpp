@@ -23,39 +23,43 @@ Rook::Rook(Color color) : Piece(color)
  * @param grid that stores all the pieces, to check if there is pieces that block the movment of our rook
  * @return true - valid movie , false - NOT valid move
  */
-bool Rook::validmoves(std::string currPositon, std::string goalPosition,Piece* (&grid)[8][8])
+bool Rook::validmoves(std::string currPosition, std::string goalPosition, Piece* (&grid)[8][8])
 {
-	int currRow = currPositon[0] - '0'; //convert the row position from char to int
-	int currCol = currPositon[1] - '0'; //convert the col position from char to int
+    int currRow = currPosition[0] - '0'; // Convert the row position from char to int
+    int currCol = currPosition[1] - '0'; // Convert the col position from char to int
 
-	int goalRow = goalPosition[0] - '0'; //convert the goal row position from char to int
-	int goalCol = goalPosition[1] - '0';//convert the goal col position from char to int
+    int goalRow = goalPosition[0] - '0'; // Convert the goal row position from char to int
+    int goalCol = goalPosition[1] - '0'; // Convert the goal col position from char to int
 
-	//checks if the movement is on the same row or on the same col
-	if (currRow == goalRow) //if its on the same row
-	{
-		for (int i = currCol + 1; i < goalCol; i++) //check for pieces that can block the way
-		{
-			if (grid[goalRow][i] != nullptr) //if the piece found return false - NOT valid move
-			{
-				return false;
-			}
-		}
-		return true; //return valid move
-	}
-	if (currCol == goalCol) //if the movment on the same col
-	{
-		for (int i = currRow + 1; i < goalRow; i++) //check for pieces that can block the way
-		{
-			if (grid[i][goalCol] != nullptr)//if the piece foudn return false - Not valid move
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	return false;
+    // Check if the movement is on the same row or on the same column
+    if (currRow == goalRow) // If it's on the same row
+    {
+        int startCol = std::min(currCol, goalCol) + 1;
+        int endCol = std::max(currCol, goalCol);
+        for (int i = startCol; i < endCol; ++i) // Check for pieces that can block the way
+        {
+            if (grid[currRow][i] != nullptr) // If a piece is found, return false - NOT a valid move
+            {
+                return false;
+            }
+        }
+        return true; // Return valid move
+    }
+    else if (currCol == goalCol) // If the movement is on the same column
+    {
+        int startRow = std::min(currRow, goalRow) + 1;
+        int endRow = std::max(currRow, goalRow);
+        for (int i = startRow; i < endRow; ++i) // Check for pieces that can block the way
+        {
+            if (grid[i][currCol] != nullptr) // If a piece is found, return false - NOT a valid move
+            {
+                return false;
+            }
+        }
+        return true; // Return valid move
+    }
+
+    return false; // Not a valid move if it's not in the same row or column
 }
 
 void Rook::attackSquares(std::string currPositon, std::string goalPosition)
