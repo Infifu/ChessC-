@@ -8,7 +8,7 @@
 /**
  * @brief Fill the grid with null pointers
  */
-Board::Board(Color color) : _currentPlayer(color)
+Board::Board(Color color) : _currentPlayer(color) , _checkOnKing(null)
 {
 	for (int i = 0; i < 8; ++i)
 	{
@@ -141,11 +141,35 @@ int Board::checkMove(std::string msgFromGraphics)
 	if (fromPiece->getPieceColor() != _currentPlayer)
 		return 6;
 
+	if (_checkOnKing != null) //doesnt let the player move if his king will stay in check after the move
+	{
+		Color enemyPlayer;
+		if (fromPiece->validmoves(result, resultTo, _grid)) { //if the goal is empty and there is no pieces blocking it
+			if (toPiece != nullptr) {
+				if (toPiece->getPieceSymbol() == "k" || toPiece->getPieceSymbol() == "K")
+					return 6;
+			}
+
+			if (_checkOnKing == onBlack)
+				enemyPlayer = WHITE;
+			else if (_checkOnKing == onWhite)
+				enemyPlayer = BLACK;
+
+			if (checkCheck(enemyPlayer)) {
+				return 6;
+			}
+			_checkOnKing = null;
+			return 0; //code for valid move
+		}
+	}
+
 	if (fromPiece->validmoves(result, resultTo, _grid)) { //if the goal is empty and there is no pieces blocking it
 		if (toPiece != nullptr) {
 			if (toPiece->getPieceSymbol() == "k" || toPiece->getPieceSymbol() == "K")
 				return 6;
 		}
+
+
 		_grid[FromRow][FromCol] = nullptr; //move the pieces
 		_grid[ToRow][ToCol] = fromPiece;
 		delete(toPiece);
@@ -165,7 +189,7 @@ int Board::checkMove(std::string msgFromGraphics)
 }
 
 /**
- * @brief functions to check if there is a check on the king
+ * @brief functions to check if there is a check on the enemy king
  * @param currentPlayer - the color of the current player
  * @return true - there is a check, false - there is no check
  */
@@ -173,7 +197,6 @@ bool Board::checkCheck(Color currentPlayer)
 {
 	std::string currPosition;
 	std::string goalPosition;
-	bool found;
 
 	//loop though the board to find the enemy king
 	for (int i = 0; i < 8; ++i) {
@@ -196,8 +219,13 @@ bool Board::checkCheck(Color currentPlayer)
 				if (_grid[i][j]->getPieceColor() == currentPlayer) {
 					currPosition.clear();
 					currPosition = std::to_string(i) + std::to_string(j);
-					if (_grid[i][j]->validmoves(currPosition, goalPosition, _grid))
+					if (_grid[i][j]->validmoves(currPosition, goalPosition, _grid)) {
+						if (currentPlayer == WHITE)
+							_checkOnKing = onBlack;
+						else if (currentPlayer == BLACK)
+							_checkOnKing = onWhite;
 						return true;
+					}
 				}
 			}
 		}
@@ -215,4 +243,3 @@ void Board::switchColor()
 	else if (_currentPlayer == BLACK)
 		_currentPlayer = WHITE;
 }
-

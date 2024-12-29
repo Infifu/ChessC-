@@ -3,11 +3,19 @@
 #include <iostream>
 #include <map>
 
+enum checkStatus
+{
+    null = 0,
+    onWhite = 1,
+    onBlack = 2
+};
+
 class Board
 {
 protected:
     Piece* _grid[8][8];
     Color _currentPlayer;
+    checkStatus _checkOnKing;
 public:
     Board(Color color); //constructor
     void display(); //display the board
