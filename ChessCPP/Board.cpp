@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include "Knight.h"
 
 /**
  * @brief Fill the grid with null pointers
@@ -67,6 +68,13 @@ void Board::intialise()
 	_grid[0][5] = new Bishop(BLACK);
 	_grid[7][2] = new Bishop(WHITE);
 	_grid[7][5] = new Bishop(WHITE);
+
+	//
+	
+	_grid[0][1] = new Knight(BLACK);
+
+
+
 	//TO DO
 	//Add other pieces
 }
