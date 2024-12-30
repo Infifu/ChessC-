@@ -9,12 +9,14 @@
  */
 Pawn::Pawn(Color color) : Piece(color), _promoted(false),_promotedTo(nullptr),_firstMove(true)
 {
-	if (color) {
+	if (color)
+	{
 		_pieceSymbol = "P";
 		_moveDirection = UP;
 		_pieceColor = WHITE;
 	}
-	else {
+	else
+	{
 		_pieceSymbol = "p";
 		_moveDirection = DOWN;
 		_pieceColor = BLACK;

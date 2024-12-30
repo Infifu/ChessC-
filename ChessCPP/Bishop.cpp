@@ -27,12 +27,15 @@ bool Bishop::validmoves(std::string currPosition, std::string goalPosition, Piec
 
 	if (currRow < goalRow)
 	{
-		if (currCol < goalCol) {
+		if (currCol < goalCol)
+		{
 			j = currCol;
-			for (int i = currRow; i <= goalRow; i++) {
+			for (int i = currRow; i <= goalRow; i++)
+			{
 				if (grid[i][j] != nullptr && i != currRow && i != goalRow)
 					return false;
-				if (j == goalCol && i == goalRow) {
+				if (j == goalCol && i == goalRow)
+				{
 					return true;
 				}
 				j++;
@@ -45,7 +48,8 @@ bool Bishop::validmoves(std::string currPosition, std::string goalPosition, Piec
 			{	
 				if (grid[i][j] != nullptr && i != currRow && i != goalRow)
 					return false;
-				if (j == goalCol && i == goalRow) {
+				if (j == goalCol && i == goalRow)
+				{
 					return true;
 				}
 				j--;
@@ -55,7 +59,8 @@ bool Bishop::validmoves(std::string currPosition, std::string goalPosition, Piec
 	else
 	{
 		j = goalCol;
-		if (goalCol < currCol) {
+		if (goalCol < currCol)
+		{
 			for (int i = goalRow; i <= currRow; i++)
 			{	
 				if (grid[i][j] != nullptr && i != goalRow && i != currRow)
@@ -72,7 +77,8 @@ bool Bishop::validmoves(std::string currPosition, std::string goalPosition, Piec
 			{	
 				if (grid[i][j] != nullptr && i != goalRow && i != currRow)
 					return false;
-				if (j == currCol && i == currRow) {
+				if (j == currCol && i == currRow) 
+				{
 					return true;
 				}
 				j--;
