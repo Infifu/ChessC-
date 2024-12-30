@@ -21,6 +21,7 @@
 #include "King.h"
 #include "Pawn.h"
 #include "Rook.h"
+#include "Bishop.h"
 
 // TODO: reference additional headers your program requires here
 
