@@ -186,17 +186,17 @@ int Board::checkMove(std::string msgFromGraphics)
 
 		_grid[FromRow][FromCol] = nullptr; //move the pieces
 		_grid[ToRow][ToCol] = fromPiece;
-		//if (checkCheck(enemyPlayer))
-		//{
-		//	_grid[ToRow][ToCol] = nullptr; //reverse the move
-		//	_grid[FromRow][FromCol] = fromPiece;
-		//	_checkOnKing = null;
-		//	return 6;
-		//}
+		if (checkCheck(enemyPlayer))
+		{
+			_grid[ToRow][ToCol] = nullptr; //reverse the move
+			_grid[FromRow][FromCol] = fromPiece;
+			_checkOnKing = null;
+			return 6;
+		}
 		delete(toPiece);
 
-		//if (checkCheck(_currentPlayer))
-		//	return 1; //code for check
+		if (checkCheck(_currentPlayer))
+			return 1; //code for check
 
 		return 0; //code for valid move
 	}
