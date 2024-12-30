@@ -65,6 +65,16 @@ bool Pawn::validmoves(std::string currPositon, std::string goalPosition, Piece* 
 			return true;
 		}
 	}
-
+	else if (std::abs(currCol - goalCol) == 1 && grid[goalRow][goalCol] != nullptr)
+	{
+		if (_moveDirection == UP && currRow - goalRow == 1 && grid[goalRow][goalCol] != nullptr)
+		{
+			return true;
+		}
+		else if (_moveDirection == DOWN && goalRow - currRow == 1 && grid[goalRow][goalCol] != nullptr)
+		{
+			return true;
+		}
+	}
 	return false;
 }
