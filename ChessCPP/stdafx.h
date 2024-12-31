@@ -22,6 +22,7 @@
 #include "Pawn.h"
 #include "Rook.h"
 #include "Bishop.h"
+#include "Queen.h"
 
 // TODO: reference additional headers your program requires here
 

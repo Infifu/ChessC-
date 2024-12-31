@@ -61,8 +61,8 @@ void Board::intialise()
 	_grid[0][7] = new Rook(BLACK);
 
 	//Kings
-	_grid[0][3] = new King(BLACK);
-	_grid[7][3] = new King(WHITE);
+	_grid[0][4] = new King(BLACK);
+	_grid[7][4] = new King(WHITE);
 
 	//Bishops
 	_grid[0][2] = new Bishop(BLACK);
@@ -75,6 +75,11 @@ void Board::intialise()
 	_grid[0][6] = new Knight(BLACK);
 	_grid[7][1] = new Knight(WHITE);
 	_grid[7][6] = new Knight(WHITE);
+
+	//Queens
+	_grid[0][3] = new Queen(BLACK);
+	_grid[7][3] = new Queen(WHITE);
+
 	//TO DO
 	//Add other pieces
 }
