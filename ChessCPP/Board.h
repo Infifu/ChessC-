@@ -18,6 +18,7 @@ protected:
     checkStatus _checkOnKing;
 public:
     Board(Color color); //constructor
+    ~Board();
     void display(); //display the board
     void intialise(); //initalise the grid with chess pieces
     bool movePiece(int fromX, int fromY, int toX, int toY); //might be deleted later

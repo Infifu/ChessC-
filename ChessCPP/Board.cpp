@@ -20,6 +20,19 @@ Board::Board(Color color) : _currentPlayer(color) , _checkOnKing(null)
 	}
 }
 
+Board::~Board()
+{
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			delete(_grid[i][j]);
+		}
+	}
+}
+
+
+
 /**
  * @brief print the grid for debugging
  */
