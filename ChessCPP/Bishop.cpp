@@ -1,17 +1,29 @@
 #include "Bishop.h"
 
+/**
+ * @brief Bishop constructor
+ * @param color - player color
+ */
 Bishop::Bishop(Color color) : Piece(color)
 {
 	if (color)
 	{
-		_pieceSymbol = 'B';
+		_pieceSymbol = 'B'; //white
 	}
 	else
 	{
-		_pieceSymbol = 'b';
+		_pieceSymbol = 'b'; //black
 	}
 }
 
+
+/**
+ * @brief Checking if the move is valid for the Bishop
+ * @param currPosition - current position of the bisohp (translated into 2d array locations)
+ * @param goalPosition - goal position (translated into 2d array location)
+ * @param grid - the board where the magic happens
+ * @return true - valid move, false - invalid move
+ */
 bool Bishop::validmoves(std::string currPosition, std::string goalPosition, Piece* (&grid)[8][8])
 {
 	int currRow = currPosition[0] - '0'; // Convert the row position from char to int
@@ -21,10 +33,8 @@ bool Bishop::validmoves(std::string currPosition, std::string goalPosition, Piec
 	int goalCol = goalPosition[1] - '0'; // Convert the goal col position from char to int
 
 	int j = 0;
-	int startRow = std::min(currRow, goalRow);
-	int endRow = std::max(currRow, goalRow);
 
-
+	//the whole logic is to check diagonal movement on 4 sides
 	if (currRow < goalRow)
 	{
 		if (currCol < goalCol)

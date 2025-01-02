@@ -6,7 +6,7 @@ class King : public Piece
 private:
 
 public:
-	King(Color color);
-	bool validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid)[8][8]) override;
+	King(Color color); //king constructor
+	bool validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid)[8][8]) override; //valid move for king checker
 };
 

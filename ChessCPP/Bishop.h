@@ -6,7 +6,7 @@
 class Bishop : public Piece
 {
 public:
-	Bishop(Color color);
-	bool validmoves(std::string currPosition, std::string goalPosition, Piece* (&grid)[8][8]);
+	Bishop(Color color); //bishop constructor
+	bool validmoves(std::string currPosition, std::string goalPosition, Piece* (&grid)[8][8]); //valid moves checker for bishop
 };
 

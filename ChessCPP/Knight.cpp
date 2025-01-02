@@ -1,5 +1,9 @@
 #include "Knight.h"
 
+/**
+ * @brief Knight constructor
+ * @param color - to which player does the knight belong to
+ */
 Knight::Knight(Color color) : Piece(color)
 {
     if (color)
@@ -13,6 +17,14 @@ Knight::Knight(Color color) : Piece(color)
 
 }
 
+
+/**
+ * @brief Checking if the move is valid for the Knight
+ * @param currPosition - current position of the Knight (translated into 2d array locations)
+ * @param goalPosition - goal position (translated into 2d array location)
+ * @param grid - the board where the magic happens
+ * @return true - valid move, false - invalid move
+ */
 bool Knight::validmoves(std::string currPosition, std::string goalPosition, Piece* (&grid)[8][8])
 {
     int currRow = currPosition[0] - '0'; // Convert the row position from char to int

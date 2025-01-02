@@ -3,7 +3,7 @@
 class Queen : public Piece
 {
 public:
-	Queen(Color color); //black = false, white = true
+	Queen(Color color); //queen constructor
 	bool validmoves(std::string currPositon, std::string goalPositionm, Piece* (&grid)[8][8]) override;
 };
 

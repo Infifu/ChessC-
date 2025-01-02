@@ -1,6 +1,10 @@
 #include "Queen.h"
 #include "stdafx.h"
 
+/**
+ * @brief Queen constructor
+ * @param color - which player does the piece belongs to
+ */
 Queen::Queen(Color color) : Piece(color)
 {
     if (color)
@@ -13,7 +17,13 @@ Queen::Queen(Color color) : Piece(color)
     }
 }
 
-
+/**
+ * @brief Checking if the move is valid for the Queen
+ * @param currPosition - current position of the Queen (translated into 2d array locations)
+ * @param goalPosition - goal position (translated into 2d array location)
+ * @param grid - the board where the magic happens
+ * @return true - valid move, false - invalid move
+ */
 bool Queen::validmoves(std::string currPosition, std::string goalPosition, Piece* (&grid)[8][8])
 {
     int currRow = currPosition[0] - '0'; //convert the row position from char to int

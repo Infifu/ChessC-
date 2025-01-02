@@ -20,6 +20,9 @@ Board::Board(Color color) : _currentPlayer(color) , _checkOnKing(null)
 	}
 }
 
+/**
+ * @brief board destructor ,frees all the points
+ */
 Board::~Board()
 {
 	for (int i = 0; i < 8; ++i)
@@ -161,7 +164,7 @@ int Board::checkMove(std::string msgFromGraphics)
 		return 2; //error if the the player choose position without piece
 
 	if (fromPiece->getPieceColor() != _currentPlayer)
-		return 6;
+		return 2; //the from piece doesnt not belong to current player
 	
 	if (fromPiece != nullptr && toPiece != nullptr) {
 		if (fromPiece->getPieceColor() == toPiece->getPieceColor())
@@ -174,7 +177,7 @@ int Board::checkMove(std::string msgFromGraphics)
 		{ //if the goal is empty and there is no pieces blocking it
 			if (toPiece != nullptr)
 			{
-				if (toPiece->getPieceSymbol() == "k" || toPiece->getPieceSymbol() == "K")
+				if (toPiece->getPieceSymbol() == "k" || toPiece->getPieceSymbol() == "K") //dont let the player eat the king
 					return 6;
 			}
 			if (checkCheck(_currentPlayer))
@@ -212,7 +215,7 @@ int Board::checkMove(std::string msgFromGraphics)
 			_grid[ToRow][ToCol] = nullptr; //reverse the move
 			_grid[FromRow][FromCol] = fromPiece;
 			_checkOnKing = null;
-			return 6;
+			return 4;
 		}
 		delete(toPiece);
 

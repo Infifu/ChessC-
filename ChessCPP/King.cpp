@@ -1,5 +1,9 @@
 #include "King.h"
 
+/**
+ * @brief King construcotr
+ * @param color - to what player does the piece belong
+ */
 King::King(Color color) : Piece(color)
 {
 	if (color)
@@ -12,6 +16,13 @@ King::King(Color color) : Piece(color)
 	}
 }
 
+/**
+ * @brief Checking if the move is valid for the Bishop
+ * @param currPosition - current position of the bisohp (translated into 2d array locations)
+ * @param goalPosition - goal position (translated into 2d array location)
+ * @param grid - the board where the magic happens
+ * @return true - valid move, false - invalid move
+ */
 bool King::validmoves(std::string currPositon, std::string goalPosition, Piece* (&grid)[8][8])
 {
 	int currRow = currPositon[0] - '0'; //convert the row position from char to int

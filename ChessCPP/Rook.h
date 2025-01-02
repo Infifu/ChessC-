@@ -11,6 +11,6 @@ public:
 	Rook(Color color);
 	
 	//function to check if the rook movment is valid
-	bool validmoves(std::string currPositon, std::string goalPosition,Piece* (&grid)[8][8]); //add the override later ***
+	bool validmoves(std::string currPositon, std::string goalPosition,Piece* (&grid)[8][8]) override; //add the override later ***
 };
 
