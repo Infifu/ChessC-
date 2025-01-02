@@ -97,14 +97,6 @@ void Board::intialise()
 	//Add other pieces
 }
 
-bool Board::movePiece(int fromX, int fromY, int toX, int toY)
-{
-	//TO DO
-	//Do we even need this function?
-	return false;
-}
-
-
 // [][]
 // row col                                      e2
 /**
@@ -178,7 +170,6 @@ int Board::checkMove(std::string msgFromGraphics)
 
 	if (_checkOnKing != null) //doesnt let the player move if his king will stay in check after the move
 	{
-		Color enemyPlayer;
 		if (fromPiece->validmoves(result, resultTo, _grid))
 		{ //if the goal is empty and there is no pieces blocking it
 			if (toPiece != nullptr)
@@ -186,16 +177,15 @@ int Board::checkMove(std::string msgFromGraphics)
 				if (toPiece->getPieceSymbol() == "k" || toPiece->getPieceSymbol() == "K")
 					return 6;
 			}
-
-			if (_checkOnKing == onBlack)
-				enemyPlayer = WHITE;
-			else if (_checkOnKing == onWhite)
-				enemyPlayer = BLACK;
-
-			if (checkCheck(enemyPlayer))
+			if (checkCheck(_currentPlayer))
 			{
 				return 6;
 			}
+
+			_grid[FromRow][FromCol] = nullptr; //move the pieces
+			_grid[ToRow][ToCol] = fromPiece;
+			delete(toPiece);
+
 			_checkOnKing = null;
 			return 0; //code for valid move
 		}
